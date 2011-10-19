@@ -86,8 +86,11 @@ au BufNewFile,BufRead *.rhtml set syn=eruby
 au BufNewFile,BufRead *.erb set syn=eruby
 au BufNewFile,BufRead *.erubis set syn=eruby
 
-" Folds
+" Views
 " =====
+" Interesting because Views are used to store
+" lots of data, including fold information
+" (which is what I'm interested in)
 
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
