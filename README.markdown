@@ -1,6 +1,6 @@
 ## Vim config is managed with Pathogen.
 
-### Plugins:
+### Plugins installed:
 
 - fugitive
 - haml
@@ -8,8 +8,14 @@
 - nerdtree
 - rails
 - surround
+- nerdcommenter
+
+### Plugins to install:
+- align
+- command-t (peeoopen?)
+- ack
 
 ### Todos:
 
-- Install Ack.vim, map a shortcut
-- Add relevant URLs to readme for plugins
+- Add relevant credit URLs to readme for plugins
+
