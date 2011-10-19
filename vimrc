@@ -26,7 +26,9 @@ set ruler
 set backspace=indent,eol,start
 set laststatus=2
 set relativenumber
-set undofile
+" Disable this until figuring out how
+" to relocate the undo files
+" set undofile
 
 " Make vim's regex behave nicely
 nnoremap / /\v
@@ -58,7 +60,7 @@ set textwidth=79
 set formatoptions=qrn1
 
 set colorcolumn=85
-hi ColorColumn ctermbg=lightgrey guibg=lightgrey
+hi ColorColumn ctermbg=lightgrey guibg=darkgrey
 
 " Save buffer when focus lost
 au FocusLost * :wa

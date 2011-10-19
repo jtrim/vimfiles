@@ -16,3 +16,9 @@
 [submodule "bundle/nerdtree.vim"]
 	path = bundle/nerdtree.vim
 	url = https://github.com/jtrim/nerdtree.git
+[submodule "bundle/color-sampler-pack.vim"]
+	path = bundle/color-sampler-pack.vim
+	url = git://github.com/vim-scripts/Color-Sampler-Pack.git
+[submodule "bundle/solarized.vim"]
+	path = bundle/solarized.vim
+	url = git://github.com/altercation/vim-colors-solarized.git
