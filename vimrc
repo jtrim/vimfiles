@@ -75,7 +75,7 @@ set expandtab
 " =================
 
 set list
-set listchars=tab:➜\ ,eol:¬,trail:･
+set listchars=tab:➜\ ,trail:･
 
 " Various syntax fixes for filenames
 " ==================================
