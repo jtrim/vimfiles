@@ -95,8 +95,14 @@ au BufNewFile,BufRead *.erubis set syn=eruby
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
 
+" NERDTree customizations
+let g:NERDTreeDirArrows = 1
+
 " Leader-based customizations
 " ===========================
+
+" Toggle nerdtree
+nnoremap <leader>n :NERDTreeToggle<cr>
 
 " Strip whitespace and save
 nnoremap <leader>ww :%s/\s\+$//<cr>:let @/=''<CR>:w<cr>
