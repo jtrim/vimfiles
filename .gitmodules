@@ -25,3 +25,15 @@
 [submodule "bundle/nerdcommenter.vim"]
 	path = bundle/nerdcommenter.vim
 	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "bundle/space.vim"]
+	path = bundle/space.vim
+	url = https://github.com/spiiph/vim-space.git
+[submodule "bundle/command-t.vim"]
+	path = bundle/command-t.vim
+	url = https://github.com/wincent/Command-T.git
+[submodule "bundle/align.vim"]
+	path = bundle/align.vim
+	url = https://github.com/tsaleh/vim-align.git
+[submodule "bundle/supertab.vim"]
+	path = bundle/supertab.vim
+	url = https://github.com/ervandew/supertab.git
