@@ -26,6 +26,7 @@ set ruler
 set backspace=indent,eol,start
 set laststatus=2
 set relativenumber
+set colorcolumn=""
 " Disable this until figuring out how
 " to relocate the undo files
 " set undofile
@@ -58,9 +59,6 @@ set textwidth=79
 " see :help formatoptions for more settings.
 " Controls autoformatting of text.
 set formatoptions=qrn1
-
-set colorcolumn=85
-hi ColorColumn ctermbg=lightgrey guibg=darkgrey
 
 " Save buffer when focus lost
 au FocusLost * :wa
@@ -129,4 +127,4 @@ map <C-s> <C-W>17<
 map <Leader>op :!open .<CR><CR>
 
 " Replace tabs with spaces
-nnoremap <silent> <leader>ts :let _s=@/<Bar>:%s/	/  /g<Bar>:let @/=_s<Bar>:nohl<CR>
+nnoremap <silent> <leader>wt :let _s=@/<Bar>:%s/	/  /g<Bar>:let @/=_s<Bar>:nohl<CR>
