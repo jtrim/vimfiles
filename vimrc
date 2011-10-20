@@ -95,8 +95,15 @@ au BufNewFile,BufRead *.erubis set syn=eruby
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
 
-" NERDTree customizations
+" Plugin customizations
+" =====================
+
+" NERDTree directory arrows ( janus-style )
 let g:NERDTreeDirArrows = 1
+
+" CommandT max height on summon
+let g:CommandTMaxHeight=20
+
 
 " Leader-based customizations
 " ===========================
