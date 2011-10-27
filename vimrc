@@ -85,6 +85,7 @@ au BufRead,BufNewFile .autotest setf ruby
 au BufNewFile,BufRead *.rhtml set syn=eruby
 au BufNewFile,BufRead *.erb set syn=eruby
 au BufNewFile,BufRead *.erubis set syn=eruby
+au BufNewFile,BufRead *.slim set syn=slim
 
 " Views
 " =====
@@ -135,3 +136,9 @@ map <Leader>op :!open .<CR><CR>
 
 " Replace tabs with spaces
 nnoremap <silent> <leader>wt :let _s=@/<Bar>:%s/	/  /g<Bar>:let @/=_s<Bar>:nohl<CR>
+
+" Open Ack.vim
+nnoremap <leader>aa :Ack<space>
+
+" Toggle Zoomwin
+nnoremap <leader><leader> :ZoomWin<cr>
