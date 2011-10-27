@@ -40,3 +40,15 @@
 [submodule "bundle/slim.vim"]
 	path = bundle/slim.vim
 	url = https://github.com/bbommarito/vim-slim.git
+[submodule "bundle/ack.vim"]
+	path = bundle/ack.vim
+	url = https://github.com/mileszs/ack.vim.git
+[submodule "bundle/matchit.vim"]
+	path = bundle/matchit.vim
+	url = https://github.com/mhz/vim-matchit.git
+[submodule "bundle/zoomwin.vim"]
+	path = bundle/zoomwin.vim
+	url = https://github.com/vim-scripts/ZoomWin.git
+[submodule "bundle/gist.vim"]
+	path = bundle/gist.vim
+	url = https://github.com/mattn/gist-vim.git
