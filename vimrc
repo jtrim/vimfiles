@@ -3,6 +3,14 @@
 " Lots of good stuff in there, please have a look and enjoy.
 
 let mapleader = ","
+
+" NERDCommenter custom delimteres
+" Needs to be set before the plugin
+" is loaded
+let g:NERDCustomDelimiters = {
+  \ 'ruby': { 'left': '# ' }
+  \ }
+
 call pathogen#infect()
 
 " General vim behavior modification therapy
@@ -104,7 +112,6 @@ let g:NERDTreeDirArrows = 1
 
 " CommandT max height on summon
 let g:CommandTMaxHeight=20
-
 
 " Leader-based customizations
 " ===========================
