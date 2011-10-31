@@ -6,3 +6,4 @@ set colorcolumn=""
 
 " color rootwater
 color borland
+set transparency=5

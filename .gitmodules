@@ -52,3 +52,6 @@
 [submodule "bundle/gist.vim"]
 	path = bundle/gist.vim
 	url = https://github.com/mattn/gist-vim.git
+[submodule "bundle/coffeescript.vim"]
+	path = bundle/coffeescript.vim
+	url = https://github.com/kchmck/vim-coffee-script.git
