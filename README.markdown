@@ -1,19 +1,21 @@
 ## Vim config is managed with Pathogen.
 
-### Plugins installed:
+### Vimfiles installed:
 
+- align
+- color sampler pack
+- command-t
 - fugitive
 - haml
 - markdown
+- nerdcommenter
 - nerdtree
 - rails
+- slim
+- solarized theme
+- space
+- supertab
 - surround
-- nerdcommenter
-
-### Plugins to install:
-- align
-- command-t (peeoopen?)
-- ack
 
 ### Todos:
 
