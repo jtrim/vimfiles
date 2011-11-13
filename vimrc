@@ -61,7 +61,7 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 
-set wrap
+set nowrap
 set textwidth=79
 
 " see :help formatoptions for more settings.
