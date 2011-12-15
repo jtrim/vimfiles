@@ -71,6 +71,12 @@ set formatoptions=qrn1
 " Save buffer when focus lost
 au FocusLost * :wa
 
+" Change where vim saves backup files
+set backupdir=./.backup,~/.backup,.,/tmp
+
+" Change where vim saves .swp files
+set directory=./.swap,~/.swap,.,/tmp
+
 " Whitespace behavior
 " ===================
 
@@ -90,6 +96,8 @@ set listchars=tab:➜\ ,trail:･
 
 au BufRead,BufNewFile *.scss set filetype=scss
 au BufRead,BufNewFile .autotest setf ruby
+au BufRead,BufNewFile Rakefile setf ruby
+au BufRead,BufNewFile Guardfile setf ruby
 au BufNewFile,BufRead *.rhtml set syn=eruby
 au BufNewFile,BufRead *.erb set syn=eruby
 au BufNewFile,BufRead *.erubis set syn=eruby
