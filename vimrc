@@ -102,6 +102,7 @@ au BufNewFile,BufRead *.rhtml set syn=eruby
 au BufNewFile,BufRead *.erb set syn=eruby
 au BufNewFile,BufRead *.erubis set syn=eruby
 au BufNewFile,BufRead *.slim set syn=slim
+au BufNewFile,BufRead *.clj set syn=clojure
 
 " Views
 " =====
