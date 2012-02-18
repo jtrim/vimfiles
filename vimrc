@@ -8,7 +8,8 @@ let mapleader = ","
 " Needs to be set before the plugin
 " is loaded
 let g:NERDCustomDelimiters = {
-  \ 'ruby': { 'left': '# ' }
+  \ 'ruby': { 'left': '# ' },
+  \ 'vim': { 'left': '" ' }
   \ }
 
 call pathogen#infect()
