@@ -111,8 +111,10 @@ au BufNewFile,BufRead *.clj set syn=clojure
 " lots of data, including fold information
 " (which is what I'm interested in)
 
-au BufWinLeave * silent! mkview
-au BufWinEnter * silent! loadview
+" JT 1/2/12: Commented out because it breaks rails.vim
+" see http://blog.gabebw.com/2010/08/03/rails-vim-and-those-pesky-e345-cant-find-file-xxx-in-path-errors/
+" au BufWinLeave * silent! mkview
+" au BufWinEnter * silent! loadview
 
 " Plugin customizations
 " =====================
