@@ -58,3 +58,6 @@
 [submodule "bundle/clojure.vim"]
 	path = bundle/clojure.vim
 	url = https://github.com/vim-scripts/VimClojure.git
+[submodule "bundle/unimpaired.vim"]
+	path = bundle/unimpaired.vim
+	url = https://github.com/tpope/vim-unimpaired.git

@@ -158,3 +158,8 @@ nnoremap <leader>aa :Ack<space>
 
 " Toggle Zoomwin
 nnoremap <leader><leader> :ZoomWin<cr>
+
+" Bubble lines (requires unimpaired.vim)
+
+map <C-j> ]e
+map <C-k> [e
