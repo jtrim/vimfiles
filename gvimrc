@@ -1,8 +1,15 @@
 source $HOME/.vimrc
 
-set guifont=Inconsolata:h16
+set guifont=Monaco:h12
 set antialias
+
+" no toolbar
 set guioptions-=T
+
+" no right and left scrollbars
+set guioptions-=r
+set guioptions-=L
+
 set colorcolumn=""
 
 " color rootwater
@@ -11,6 +18,7 @@ set colorcolumn=""
 " color dusk
 " color autumnleaf
 " color candycode
+" color lucius
 color synic
-" color borland
-color lucius
+
+set transparency=10
