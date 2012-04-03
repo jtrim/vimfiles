@@ -166,5 +166,4 @@ map <C-k> :tabn<cr>
 map <C-j> :tabp<cr>
 map <C-n> :tabnew<cr>
 
-map <C-j> ]e
-map <C-k> [e
+set clipboard=unnamed
