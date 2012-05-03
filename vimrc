@@ -9,15 +9,25 @@ let mapleader = ","
 " is loaded
 let g:NERDCustomDelimiters = {
   \ 'ruby': { 'left': '# ' },
-  \ 'vim': { 'left': '" ' }
+  \ 'vim': { 'left': '" ' },
+  \ 'haskell': { 'left': '{- ', 'right': ' -}' }
   \ }
 
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+set t_Co=256
+
 call pathogen#infect()
+
+syntax enable
+set background=dark
+colorscheme solarized
+
+highlight LineNr ctermfg=52 ctermbg=234
 
 " General vim behavior modification therapy
 " =========================================
 
-syntax on
 filetype plugin indent on
 set nocompatible " Turn off vi compatibility
 set modelines=0
@@ -104,6 +114,7 @@ au BufNewFile,BufRead *.erb set syn=eruby
 au BufNewFile,BufRead *.erubis set syn=eruby
 au BufNewFile,BufRead *.slim set syn=slim
 au BufNewFile,BufRead *.clj set syn=clojure
+au BufNewFile,BufRead *.json setf javascript
 
 " Views
 " =====
@@ -124,6 +135,12 @@ let g:NERDTreeDirArrows = 1
 
 " CommandT max height on summon
 let g:CommandTMaxHeight=20
+map <leader>tt :CommandT<CR>
+set ttimeoutlen=50
+
+let g:CommandTCancelMap     = ['<ESC>', '<C-c>']
+let g:CommandTSelectNextMap = ['<C-n>', '<C-j>', '<ESC>OB']
+let g:CommandTSelectPrevMap = ['<C-p>', '<C-k>', '<ESC>OA']
 
 " Leader-based customizations
 " ===========================
@@ -167,3 +184,4 @@ map <C-j> :tabp<cr>
 map <C-n> :tabnew<cr>
 
 set clipboard=unnamed
+
