@@ -43,9 +43,6 @@
 [submodule "bundle/ack.vim"]
 	path = bundle/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
-[submodule "bundle/matchit.vim"]
-	path = bundle/matchit.vim
-	url = https://github.com/mhz/vim-matchit.git
 [submodule "bundle/zoomwin.vim"]
 	path = bundle/zoomwin.vim
 	url = https://github.com/vim-scripts/ZoomWin.git
