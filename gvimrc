@@ -1,7 +1,7 @@
 source $HOME/.vimrc
 
-set guifont=Monaco:h10
-set noantialias
+set guifont=Monaco:h12
+set antialias
 
 " no toolbar
 set guioptions-=T
@@ -19,6 +19,5 @@ set colorcolumn=""
 " color autumnleaf
 " color candycode
 " color synic
-color lucius
-
-set transparency=1
+" color lucius
+" color darkspectrum
