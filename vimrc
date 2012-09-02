@@ -20,8 +20,8 @@ set t_Co=256
 call pathogen#infect()
 
 syntax enable
-set background=dark
-colorscheme solarized
+set background=light
+" colorscheme solarized
 
 highlight LineNr ctermfg=52 ctermbg=234
 
