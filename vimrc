@@ -135,7 +135,7 @@ let g:NERDTreeDirArrows = 1
 
 " CommandT max height on summon
 let g:CommandTMaxHeight=20
-map <leader>tt :CommandT<CR>
+map <leader>tt :CtrlP<CR>
 set ttimeoutlen=50
 
 let g:CommandTCancelMap     = ['<ESC>', '<C-c>']
