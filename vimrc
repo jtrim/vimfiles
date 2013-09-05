@@ -138,6 +138,8 @@ let g:CommandTMaxHeight=20
 map <leader>tt :CtrlP<CR>
 set ttimeoutlen=50
 
+map <leader>rr :w ! ruby<CR>
+
 let g:CommandTCancelMap     = ['<ESC>', '<C-c>']
 let g:CommandTSelectNextMap = ['<C-n>', '<C-j>', '<ESC>OB']
 let g:CommandTSelectPrevMap = ['<C-p>', '<C-k>', '<ESC>OA']
