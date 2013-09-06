@@ -37,3 +37,9 @@
 [submodule "bundle/webapi.vim"]
 	path = bundle/webapi.vim
 	url = https://github.com/mattn/webapi-vim.git
+[submodule "bundle/surround.vim"]
+	path = bundle/surround.vim
+	url = https://github.com/tpope/vim-surround.git
+[submodule "bundle/matchit.vim"]
+	path = bundle/matchit.vim
+	url = https://github.com/edsono/vim-matchit.git
