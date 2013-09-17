@@ -20,8 +20,8 @@ set t_Co=256
 call pathogen#infect()
 
 syntax enable
-set background=light
-" colorscheme solarized
+set background=dark
+colorscheme ir_black
 
 highlight LineNr ctermfg=52 ctermbg=234
 
@@ -186,4 +186,3 @@ map <C-j> :tabp<cr>
 map <C-n> :tabnew<cr>
 
 set clipboard=unnamed
-
