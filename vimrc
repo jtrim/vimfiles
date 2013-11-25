@@ -10,7 +10,8 @@ let mapleader = ","
 let g:NERDCustomDelimiters = {
   \ 'ruby': { 'left': '# ' },
   \ 'vim': { 'left': '" ' },
-  \ 'haskell': { 'left': '{- ', 'right': ' -}' }
+  \ 'haskell': { 'left': '{- ', 'right': ' -}' },
+  \ 'slim': { 'left': '/ ', 'right': '' }
   \ }
 
 let g:solarized_termcolors=256
