@@ -23,6 +23,9 @@ call pathogen#infect()
 syntax enable
 set background=dark
 colorscheme ir_black
+" colorscheme enzyme
+" colorscheme smyck
+
 
 highlight LineNr ctermfg=52 ctermbg=234
 
@@ -137,6 +140,7 @@ let g:NERDTreeDirArrows = 1
 " CommandT max height on summon
 let g:CommandTMaxHeight=20
 map <leader>tt :CtrlP<CR>
+map <leader>ta :CtrlPTag<CR>
 set ttimeoutlen=50
 
 map <leader>rr :w ! ruby<CR>
