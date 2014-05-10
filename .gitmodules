@@ -43,3 +43,9 @@
 [submodule "bundle/matchit.vim"]
 	path = bundle/matchit.vim
 	url = https://github.com/edsono/vim-matchit.git
+[submodule "bundle/solarized.vim"]
+	path = bundle/solarized.vim
+	url = https://github.com/altercation/vim-colors-solarized.git
+[submodule "bundle/rails.vim"]
+	path = bundle/rails.vim
+	url = https://github.com/tpope/vim-rails.git
