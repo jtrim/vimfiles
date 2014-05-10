@@ -10,8 +10,10 @@ let mapleader = ","
 let g:NERDCustomDelimiters = {
   \ 'ruby': { 'left': '# ' },
   \ 'vim': { 'left': '" ' },
-  \ 'haskell': { 'left': '{- ', 'right': ' -}' },
-  \ 'slim': { 'left': '/ ', 'right': '' }
+  \ 'haskell': { 'left': '-- ', 'right': '' },
+  \ 'slim': { 'left': '/ ', 'right': '' },
+  \ 'scss': { 'left': '// ', 'right': '' },
+  \ 'javascript': { 'left': '// ', 'right': '' }
   \ }
 
 let g:solarized_termcolors=256
@@ -22,9 +24,9 @@ call pathogen#infect()
 
 syntax enable
 set background=dark
-colorscheme ir_black
+" colorscheme solarized
 " colorscheme enzyme
-" colorscheme smyck
+colorscheme smyck
 
 
 highlight LineNr ctermfg=52 ctermbg=234
@@ -119,6 +121,7 @@ au BufNewFile,BufRead *.erubis set syn=eruby
 au BufNewFile,BufRead *.slim set syn=slim
 au BufNewFile,BufRead *.clj set syn=clojure
 au BufNewFile,BufRead *.json setf javascript
+au BufNewFile,BufRead *.cabal setf haskell
 
 " Views
 " =====
@@ -140,6 +143,11 @@ let g:NERDTreeDirArrows = 1
 " CommandT max height on summon
 let g:CommandTMaxHeight=20
 map <leader>tt :CtrlP<CR>
+map <leader>tv :CtrlP app/views<CR>
+map <leader>tm :CtrlP app/models<CR>
+map <leader>tc :CtrlP app/controllers<CR>
+map <leader>ts :CtrlP spec<CR>
+
 map <leader>ta :CtrlPTag<CR>
 set ttimeoutlen=50
 
@@ -191,3 +199,4 @@ map <C-j> :tabp<cr>
 map <C-n> :tabnew<cr>
 
 set clipboard=unnamed
+set number
