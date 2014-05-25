@@ -3,6 +3,7 @@
 " Lots of good stuff in there, please have a look and enjoy.
 
 let mapleader = ","
+set shell=/usr/local/bin/zsh
 
 " NERDCommenter custom delimteres
 " Needs to be set before the plugin
@@ -15,6 +16,9 @@ let g:NERDCustomDelimiters = {
   \ 'scss': { 'left': '// ', 'right': '' },
   \ 'javascript': { 'left': '// ', 'right': '' }
   \ }
+let g:NERDCreateDefaultMappings = 0
+nmap <silent> <Leader>c<space> <plug>NERDCommenterToggle
+vmap <silent> <Leader>c<space> <plug>NERDCommenterToggle
 
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
@@ -140,8 +144,6 @@ au BufNewFile,BufRead *.cabal setf haskell
 " NERDTree directory arrows ( janus-style )
 let g:NERDTreeDirArrows = 1
 
-" CommandT max height on summon
-let g:CommandTMaxHeight=20
 map <leader>tt :CtrlP<CR>
 map <leader>tv :CtrlP app/views<CR>
 map <leader>tm :CtrlP app/models<CR>
@@ -200,3 +202,16 @@ map <C-n> :tabnew<cr>
 
 set clipboard=unnamed
 set number
+
+" rspec.vim
+let g:rspec_command = "Dispatch bundle exec spring rspec --format=progress {spec}"
+map <Leader>rf :call RunCurrentSpecFile()<CR>
+map <Leader>rs :call RunNearestSpec()<CR>
+map <Leader>rl :call RunLastSpec()<CR>
+map <Leader>ra :call RunAllSpecs()<CR>
+
+" rails.vim
+map <Leader>R :vs<CR><C-W>l:A<CR>
+
+" quickfix
+map <Leader>cc :cclose<CR>
