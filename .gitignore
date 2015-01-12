@@ -2,3 +2,4 @@ view
 .netrwhist
 .DS_Store
 bundle/*
+.vundle
