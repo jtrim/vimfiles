@@ -232,4 +232,13 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+" Routes
+
 au BufWritePost config/routes.rb silent !routes 2>&1 > /dev/null &
+map <Leader>lr
+      \ :new<cr>
+      \ :read !routes<cr>
+      \ :setlocal buftype=nofile<cr>
+      \ :setlocal bufhidden=hide<cr>
+      \ :setlocal
+      \ noswapfile<cr>
