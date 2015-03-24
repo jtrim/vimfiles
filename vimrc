@@ -24,6 +24,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'wesgibbs/vim-irblack'
+Plugin 'vim-scripts/ZoomWin'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
