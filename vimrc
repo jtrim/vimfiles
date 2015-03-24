@@ -120,9 +120,9 @@ map <C-s> <C-W>17<
 " (Mac OS only): open the root of a project in Finder
 map <Leader>op :!open .<CR><CR>
 
-map <C-k> :tabn<cr>
-map <C-j> :tabp<cr>
-map <C-n> :tabnew<cr>
+map <BS> :tabp<cr>
+map <Space> :tabn<cr>
+nnoremap <C-n> :tabnew<cr>
 
 set clipboard=unnamed
 
