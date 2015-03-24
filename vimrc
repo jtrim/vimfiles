@@ -33,6 +33,7 @@ filetype plugin indent on
 
 let mapleader = ","
 set shell=/usr/local/bin/zsh
+set wildignore+=*/docs/javascripts/*,*/public/assets/source_maps/*,*/public/source_maps/*,*/tmp/*,*.so,*.swp,*.zip
 
 set t_Co=256 " 256 colors
 syntax enable
