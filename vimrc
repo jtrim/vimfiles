@@ -116,9 +116,16 @@ inoremap jj <ESC>
 " (Mac OS only): open the root of a project in Finder
 map <Leader>op :!open .<CR><CR>
 
+" Tabs
 map <BS> :tabp<cr>
 map <Space> :tabn<cr>
 nnoremap <C-n> :tabnew<cr>
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 
 set clipboard=unnamed
 
@@ -210,9 +217,26 @@ map <Leader>R :vs<CR><C-W>l:A<CR>
 
 map <Leader><Leader> :ZoomWin<CR>
 
+" ======
+" Routes
+" ======
+
+au BufWritePost config/routes.rb silent !routes 2>&1 > /dev/null &
+
+function g:LoadRoutes() abort
+  read !routes
+  setlocal buftype=nofile
+  setlocal bufhidden=hide
+  setlocal noswapfile
+endfunction
+
+map <Leader>lr :new<cr> :call g:LoadRoutes()<cr>
+map <Leader>tlr :tabnew<cr> :call g:LoadRoutes()<cr>
+
 " ==================================
 " Various syntax fixes for filenames
 " ==================================
+
 au BufRead,BufNewFile *.scss set filetype=scss
 au BufRead,BufNewFile .autotest setf ruby
 au BufRead,BufNewFile Rakefile setf ruby
@@ -225,20 +249,3 @@ au BufNewFile,BufRead *.slim set syn=slim
 au BufNewFile,BufRead *.clj set syn=clojure
 au BufNewFile,BufRead *.json setf javascript
 au BufNewFile,BufRead *.cabal setf haskell
-
-" Quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
-
-" Routes
-
-au BufWritePost config/routes.rb silent !routes 2>&1 > /dev/null &
-map <Leader>lr
-      \ :new<cr>
-      \ :read !routes<cr>
-      \ :setlocal buftype=nofile<cr>
-      \ :setlocal bufhidden=hide<cr>
-      \ :setlocal
-      \ noswapfile<cr>
