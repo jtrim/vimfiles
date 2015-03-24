@@ -95,6 +95,7 @@ set directory=./.swap,~/.swap,.,/tmp
 " Whitespace behavior
 " ===================
 
+set previewheight=20
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
