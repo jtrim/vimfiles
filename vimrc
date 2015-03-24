@@ -11,7 +11,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'ervandew/supertab'
 Plugin 'kien/ctrlp.vim'
-Plugin 'mileszs/ack.vim'
+Plugin 'gabesoft/vim-ags'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-surround'
@@ -113,10 +113,6 @@ nnoremap <leader>ww :%s/\s\+$//<cr>:let @/=''<CR>:w<cr>
 " Make jj escape
 inoremap jj <ESC>
 
-" Make window larger or smaller by 17 columns at a time
-map <C-l> <C-w>17>
-map <C-s> <C-W>17<
-
 " (Mac OS only): open the root of a project in Finder
 map <Leader>op :!open .<CR><CR>
 
@@ -127,8 +123,11 @@ nnoremap <C-n> :tabnew<cr>
 set clipboard=unnamed
 
 " quickfix
-" map <leader>cc :cclose<cr>
+map <leader>cc :cclose<cr>
 
+" scratchpad
+map <leader>s :e ./scratchpad<cr>
+map <leader>q :cfile ./scratchpad<cr> :copen<cr>
 
 " --- PLUGINS ---
 
@@ -153,6 +152,9 @@ let g:NERDCustomDelimiters = {
  \ 'javascript': { 'left': '// ', 'right': '' }
  \ }
 
+xmap <Leader>c<Space> <plug>NERDCommenterToggle
+nmap <Leader>c<Space> <plug>NERDCommenterToggle
+
 " =====
 " CtrlP
 " =====
@@ -166,15 +168,30 @@ map <leader>ts :CtrlP spec<CR>
 map <leader>ta :CtrlPTag<CR>
 
 " ===
-" Ack
+" Ags
 " ===
 
-nnoremap <leader>aa :Ack<space>
+nnoremap <leader>aa :Ags<space>
+let g:ctrlp_user_command = 'ag %s -l --nocolor --ignore vendor/bundle -g ""'
+let g:ctrlp_use_caching = 0
+let g:ags_agargs = {
+  \ '--break'             : [ '', '' ],
+  \ '--color'             : [ '', '' ],
+  \ '--color-line-number' : [ '"1;30"', '' ],
+  \ '--color-match'       : [ '"32;40"', '' ],
+  \ '--color-path'        : [ '"1;31"', '' ],
+  \ '--column'            : [ '', '' ],
+  \ '--context'           : [ 'g:ags_agcontext', '-C', '3' ],
+  \ '--group'             : [ '', '' ],
+  \ '--heading'           : [ '', '-H' ],
+  \ '--max-count'         : [ 'g:ags_agmaxcount', '-m', '2000' ],
+  \ }
 
 " =====
-" Rspec
+" Rspec / Dispatch
 " =====
 
+let g:dispatch_compilers = { 'bundle exec': '' }
 let g:rspec_command = "Dispatch bundle exec rspec --format=progress {spec}"
 map <Leader>rf :call RunCurrentSpecFile()<CR>
 map <Leader>rs :call RunNearestSpec()<CR>
@@ -187,10 +204,32 @@ map <Leader>ra :call RunAllSpecs()<CR>
 
 map <Leader>R :vs<CR><C-W>l:A<CR>
 
-" ======================
-" General Customizations
-" ======================
+" =====
+" ZoomWin
+" =====
 
-" nunmap <Leader>cc
-" xunmap <Leader>cc
-" nnoremap <Leader>cc :cclose<cr>
+map <Leader><Leader> :ZoomWin<CR>
+
+" ==================================
+" Various syntax fixes for filenames
+" ==================================
+au BufRead,BufNewFile *.scss set filetype=scss
+au BufRead,BufNewFile .autotest setf ruby
+au BufRead,BufNewFile Rakefile setf ruby
+au BufRead,BufNewFile Guardfile setf ruby
+au BufRead,BufNewFile Gemfile setf ruby
+au BufNewFile,BufRead *.rhtml set syn=eruby
+au BufNewFile,BufRead *.erb set syn=eruby
+au BufNewFile,BufRead *.erubis set syn=eruby
+au BufNewFile,BufRead *.slim set syn=slim
+au BufNewFile,BufRead *.clj set syn=clojure
+au BufNewFile,BufRead *.json setf javascript
+au BufNewFile,BufRead *.cabal setf haskell
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+au BufWritePost config/routes.rb silent !routes 2>&1 > /dev/null &
