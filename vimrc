@@ -1,34 +1,58 @@
 set nocompatible
-filetype off
+
+" ==================================
+" Various syntax fixes for filenames
+" ==================================
+
+au BufRead,BufNewFile *.scss set filetype=scss
+au BufRead,BufNewFile .autotest setf ruby
+au BufRead,BufNewFile Rakefile setf ruby
+au BufRead,BufNewFile Guardfile setf ruby
+au BufRead,BufNewFile Gemfile setf ruby
+au BufNewFile,BufRead *.rhtml set syn=eruby
+au BufNewFile,BufRead *.erb set syn=eruby
+au BufNewFile,BufRead *.erubis set syn=eruby
+au BufNewFile,BufRead *.slim set syn=slim
+au BufNewFile,BufRead *.clj set syn=clojure
+au BufNewFile,BufRead *.json setf javascript
+au BufNewFile,BufRead *.cabal setf haskell
+au BufNewFile,BufRead *.coffee setf coffee
+au BufNewFile,BufRead *.swift setf swift
+syntax enable
+
+filetype plugin indent on
 
 set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/compiler
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-leiningen'
+Plugin 'tpope/vim-fireplace'
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'wesgibbs/vim-irblack'
+
+Plugin 'edsono/vim-matchit'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-dispatch'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'ervandew/supertab'
 Plugin 'kien/ctrlp.vim'
-Plugin 'gabesoft/vim-ags'
+Plugin 'rking/ag.vim'
 Plugin 'thoughtbot/vim-rspec'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-surround'
 Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
-Plugin 'edsono/vim-matchit'
-Plugin 'tpope/vim-haml'
-Plugin 'slim-template/vim-slim'
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'wesgibbs/vim-irblack'
-Plugin 'vim-scripts/ZoomWin'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'vim-scripts/saturn.vim'
+Plugin 'keith/swift.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
-filetype plugin indent on
 
 " --- END INIT ---
 
@@ -36,13 +60,12 @@ let mapleader = ","
 set shell=/usr/local/bin/zsh
 set wildignore+=*/docs/javascripts/*,*/public/assets/source_maps/*,*/public/source_maps/*,*/tmp/*,*.so,*.swp,*.zip
 
-set t_Co=256 " 256 colors
-syntax enable
-set background=dark
+" Colors
+set t_Co=256
+set background=light
+colorscheme saturn
 
-colorscheme ir_black
-" hi Visual guifg=NONE guibg=#262D51 gui=NONE ctermfg=NONE ctermbg=yellow cterm=NONE
-
+" Vim Configs
 set nocompatible " Turn off vi compatibility
 set modelines=0
 set encoding=utf-8
@@ -53,13 +76,11 @@ set showcmd
 set hidden
 set wildmenu
 set wildmode=list:longest
-set visualbell
+set number
 set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
-set number
-set colorcolumn=""
 
 " Make vim's regex behave nicely
 nnoremap / /\v
@@ -136,6 +157,17 @@ map <leader>cc :cclose<cr>
 map <leader>s :e ./scratchpad<cr>
 map <leader>q :cfile ./scratchpad<cr> :copen<cr>
 
+" select recently pasted (/changed) data
+nnoremap gp `[v`]
+
+" misc mappings
+
+" <minus> edits the current dir
+nnoremap - :e %:h<cr>
+
+" Make jj escape
+inoremap jj <ESC>
+
 " --- PLUGINS ---
 
 " =======
@@ -166,6 +198,9 @@ nmap <Leader>c<Space> <plug>NERDCommenterToggle
 " CtrlP
 " =====
 
+let g:ctrlp_user_command = 'ag %s -l --nocolor --ignore vendor/bundle -g ""'
+let g:ctrlp_use_caching = 0
+
 map <leader>tt :CtrlP<CR>
 map <leader>tv :CtrlP app/views<CR>
 map <leader>tm :CtrlP app/models<CR>
@@ -175,24 +210,22 @@ map <leader>ts :CtrlP spec<CR>
 map <leader>ta :CtrlPTag<CR>
 
 " ===
-" Ags
+" Ag
 " ===
 
-nnoremap <leader>aa :Ags<space>
-let g:ctrlp_user_command = 'ag %s -l --nocolor --ignore vendor/bundle -g ""'
-let g:ctrlp_use_caching = 0
-let g:ags_agargs = {
-  \ '--break'             : [ '', '' ],
-  \ '--color'             : [ '', '' ],
-  \ '--color-line-number' : [ '"1;30"', '' ],
-  \ '--color-match'       : [ '"32;40"', '' ],
-  \ '--color-path'        : [ '"1;31"', '' ],
-  \ '--column'            : [ '', '' ],
-  \ '--context'           : [ 'g:ags_agcontext', '-C', '3' ],
-  \ '--group'             : [ '', '' ],
-  \ '--heading'           : [ '', '-H' ],
-  \ '--max-count'         : [ 'g:ags_agmaxcount', '-m', '2000' ],
-  \ }
+nnoremap <leader>aa :Ag<space>
+" let g:ags_agargs = {
+  " \ '--break'             : [ '', '' ],
+  " \ '--color'             : [ '', '' ],
+  " \ '--color-line-number' : [ '"1;30"', '' ],
+  " \ '--color-match'       : [ '"32;40"', '' ],
+  " \ '--color-path'        : [ '"1;31"', '' ],
+  " \ '--column'            : [ '', '' ],
+  " \ '--context'           : [ 'g:ags_agcontext', '-C', '3' ],
+  " \ '--group'             : [ '', '' ],
+  " \ '--heading'           : [ '', '-H' ],
+  " \ '--max-count'         : [ 'g:ags_agmaxcount', '-m', '2000' ],
+  " \ }
 
 " =====
 " Rspec / Dispatch
@@ -217,6 +250,26 @@ map <Leader>R :vs<CR><C-W>l:A<CR>
 
 map <Leader><Leader> :ZoomWin<CR>
 
+" =========
+" Syntastic
+" =========
+
+" let g:syntastic_ruby_checkers = ['rubocop']
+" 
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" 
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 0
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_error_symbol = "✗"
+" let g:syntastic_warning_symbol = "⚠"
+" let g:syntastic_enable_highlighting = 0
+" 
+" let g:syntastic_ruby_rubocop_args = '-c config/code_style/rubocop.yml'
+
 " ======
 " Routes
 " ======
@@ -224,28 +277,16 @@ map <Leader><Leader> :ZoomWin<CR>
 au BufWritePost config/routes.rb silent !routes 2>&1 > /dev/null &
 
 function g:LoadRoutes() abort
+  badd routes
+  buffer routes
   read !routes
   setlocal buftype=nofile
   setlocal bufhidden=hide
   setlocal noswapfile
 endfunction
 
+command! -nargs=* -complete=shellcmd Routes new | jk:q
+
+
 map <Leader>lr :new<cr> :call g:LoadRoutes()<cr>
 map <Leader>tlr :tabnew<cr> :call g:LoadRoutes()<cr>
-
-" ==================================
-" Various syntax fixes for filenames
-" ==================================
-
-au BufRead,BufNewFile *.scss set filetype=scss
-au BufRead,BufNewFile .autotest setf ruby
-au BufRead,BufNewFile Rakefile setf ruby
-au BufRead,BufNewFile Guardfile setf ruby
-au BufRead,BufNewFile Gemfile setf ruby
-au BufNewFile,BufRead *.rhtml set syn=eruby
-au BufNewFile,BufRead *.erb set syn=eruby
-au BufNewFile,BufRead *.erubis set syn=eruby
-au BufNewFile,BufRead *.slim set syn=slim
-au BufNewFile,BufRead *.clj set syn=clojure
-au BufNewFile,BufRead *.json setf javascript
-au BufNewFile,BufRead *.cabal setf haskell
