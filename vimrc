@@ -62,8 +62,8 @@ set wildignore+=*/docs/javascripts/*,*/public/assets/source_maps/*,*/public/sour
 
 " Colors
 set t_Co=256
-set background=light
-colorscheme saturn
+set background=dark
+colorscheme ir_black
 
 " Vim Configs
 set nocompatible " Turn off vi compatibility
@@ -176,6 +176,7 @@ inoremap jj <ESC>
 
 nnoremap <leader>n :NERDTreeToggle<cr>
 let g:NERDTreeDirArrows = 1
+let g:NERDTreeWinSize = 50
 
 " ============
 " NERDCommenter
