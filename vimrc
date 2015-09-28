@@ -9,6 +9,8 @@ au BufRead,BufNewFile .autotest setf ruby
 au BufRead,BufNewFile Rakefile setf ruby
 au BufRead,BufNewFile Guardfile setf ruby
 au BufRead,BufNewFile Gemfile setf ruby
+au BufRead,BufNewFile Procfile setf yaml
+au BufNewFile,BufRead *.rabl setf ruby
 au BufNewFile,BufRead *.rhtml set syn=eruby
 au BufNewFile,BufRead *.erb set syn=eruby
 au BufNewFile,BufRead *.erubis set syn=eruby
@@ -50,6 +52,9 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'vim-scripts/saturn.vim'
 Plugin 'keith/swift.vim'
+Plugin 'vim-scripts/Align'
+Plugin 'junegunn/goyo.vim'
+Plugin 'amix/vim-zenroom2'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -157,9 +162,6 @@ map <leader>cc :cclose<cr>
 map <leader>s :e ./scratchpad<cr>
 map <leader>q :cfile ./scratchpad<cr> :copen<cr>
 
-" select recently pasted (/changed) data
-nnoremap gp `[v`]
-
 " misc mappings
 
 " <minus> edits the current dir
@@ -168,6 +170,9 @@ nnoremap - :e %:h<cr>
 " Make jj escape
 inoremap jj <ESC>
 
+" Select recently pasted (/changed) data
+nnoremap gp `[v`]
+
 " --- PLUGINS ---
 
 " =======
@@ -175,6 +180,7 @@ inoremap jj <ESC>
 " =======
 
 nnoremap <leader>n :NERDTreeToggle<cr>
+nmap <Leader>ff :NERDTreeFind<CR>
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeWinSize = 50
 
@@ -202,12 +208,6 @@ nmap <Leader>c<Space> <plug>NERDCommenterToggle
 let g:ctrlp_user_command = 'ag %s -l --nocolor --ignore vendor/bundle -g ""'
 let g:ctrlp_use_caching = 0
 
-map <leader>tt :CtrlP<CR>
-map <leader>tv :CtrlP app/views<CR>
-map <leader>tm :CtrlP app/models<CR>
-map <leader>tc :CtrlP app/controllers<CR>
-map <leader>ts :CtrlP spec<CR>
-
 map <leader>ta :CtrlPTag<CR>
 
 " ===
@@ -215,29 +215,32 @@ map <leader>ta :CtrlPTag<CR>
 " ===
 
 nnoremap <leader>aa :Ag<space>
-" let g:ags_agargs = {
-  " \ '--break'             : [ '', '' ],
-  " \ '--color'             : [ '', '' ],
-  " \ '--color-line-number' : [ '"1;30"', '' ],
-  " \ '--color-match'       : [ '"32;40"', '' ],
-  " \ '--color-path'        : [ '"1;31"', '' ],
-  " \ '--column'            : [ '', '' ],
-  " \ '--context'           : [ 'g:ags_agcontext', '-C', '3' ],
-  " \ '--group'             : [ '', '' ],
-  " \ '--heading'           : [ '', '-H' ],
-  " \ '--max-count'         : [ 'g:ags_agmaxcount', '-m', '2000' ],
-  " \ }
 
 " =====
 " Rspec / Dispatch
 " =====
 
 let g:dispatch_compilers = { 'bundle exec': '' }
+map <Leader>d :Dispatch<CR>
+
 let g:rspec_command = "Dispatch bundle exec rspec --format=progress {spec}"
 map <Leader>rf :call RunCurrentSpecFile()<CR>
 map <Leader>rs :call RunNearestSpec()<CR>
 map <Leader>rl :call RunLastSpec()<CR>
 map <Leader>ra :call RunAllSpecs()<CR>
+
+function! g:FocusAndDispatchTestLine()
+  execute "Focus test-unit-runner %:" . line(".") . " -p"
+  execute "Dispatch"
+endfunction
+
+function! g:FocusAndDispatchTestFile()
+  execute "Focus test-unit-runner % -p"
+  execute "Dispatch"
+endfunction
+
+map <Leader>us :call g:FocusAndDispatchTestLine()<CR>
+map <Leader>uf :call g:FocusAndDispatchTestFile()<CR>
 
 " =====
 " Rails
@@ -245,31 +248,11 @@ map <Leader>ra :call RunAllSpecs()<CR>
 
 map <Leader>R :vs<CR><C-W>l:A<CR>
 
-" =====
-" ZoomWin
-" =====
+" ===================
+" Goyo / vim-zenroom2
+" ===================
 
-map <Leader><Leader> :ZoomWin<CR>
-
-" =========
-" Syntastic
-" =========
-
-" let g:syntastic_ruby_checkers = ['rubocop']
-" 
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-" 
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 0
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_error_symbol = "✗"
-" let g:syntastic_warning_symbol = "⚠"
-" let g:syntastic_enable_highlighting = 0
-" 
-" let g:syntastic_ruby_rubocop_args = '-c config/code_style/rubocop.yml'
+nnoremap <silent> <leader>z :Goyo 80<cr>
 
 " ======
 " Routes
@@ -288,6 +271,20 @@ endfunction
 
 command! -nargs=* -complete=shellcmd Routes new | jk:q
 
-
 map <Leader>lr :new<cr> :call g:LoadRoutes()<cr>
 map <Leader>tlr :tabnew<cr> :call g:LoadRoutes()<cr>
+
+" ======
+" Markdown
+" ======
+
+map <silent> <Leader>md :w !ruby -e 'require "rubygems"; require "kramdown"; print Kramdown::Document.new(STDIN.read.chomp, input: "GFM", hard_wrap: false).to_html' > /tmp/mdresult.html; open /tmp/mdresult.html<CR>
+
+
+" ======
+" JSON
+" ======
+
+" Reformat the current buffer by piping its contents through the `jq' command
+" line utility
+command! Json %!jq .
