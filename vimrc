@@ -66,8 +66,7 @@ set wildignore+=*/docs/javascripts/*,*/public/assets/source_maps/*,*/public/sour
 
 " Colors
 set t_Co=256
-set background=dark
-colorscheme ir_black
+colorscheme saturn
 
 " Vim Configs
 set nocompatible " Turn off vi compatibility
@@ -251,7 +250,7 @@ function! s:goyo_enter()
   setlocal display+=lastline
   noremap  <buffer> <silent> k gk
   noremap  <buffer> <silent> j gj
-  noremap  <buffer> <silent> o go
+  noremap  <buffer> <silent> 0 g0
   noremap  <buffer> <silent> $ g$
   if exists('$TMUX')
     silent !tmux set status off
@@ -263,7 +262,7 @@ function! s:goyo_leave()
   set virtualedit=all
   silent! nunmap <buffer> k
   silent! nunmap <buffer> j
-  silent! nunmap <buffer> o
+  silent! nunmap <buffer> 0
   silent! nunmap <buffer> $
   if exists('$TMUX')
     silent !tmux set status on
