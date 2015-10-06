@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rendered Markdown</title>
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/6.1/styles/default.min.css"/>
+  <link rel="stylesheet" href="http://sindresorhus.com/github-markdown-css/github-markdown.css"/>
+</head>
+<body>
+  <div class="markdown-body">
+    <%= body %>
+  </div>
+  <script type="text/javascript" src="http://yandex.st/highlightjs/6.1/highlight.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script type="text/javascript">
+    var hilight_hljs = function(){
+      $('pre code').each(function(i, e){hljs.highlightBlock(e, '  ');});
+    };
+    var hilight_copy = function(){
+      $('.insert').each(function(index, element){
+        var e = $(element);
+        e.html($(e.html() + ' pre').parent().html());
+      });
+    };
+    $(function(){
+      hilight_hljs();
+      hilight_copy();
+    });
+  </script>
+</body>
+</html>

@@ -54,7 +54,6 @@ Plugin 'vim-scripts/saturn.vim'
 Plugin 'keith/swift.vim'
 Plugin 'vim-scripts/Align'
 Plugin 'junegunn/goyo.vim'
-Plugin 'amix/vim-zenroom2'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -132,12 +131,6 @@ set expandtab
 
 set list
 set listchars=tab:➜\ ,trail:･
-
-" Strip whitespace and save
-nnoremap <leader>ww :%s/\s\+$//<cr>:let @/=''<CR>:w<cr>
-
-" Make jj escape
-inoremap jj <ESC>
 
 " (Mac OS only): open the root of a project in Finder
 map <Leader>op :!open .<CR><CR>
@@ -230,12 +223,12 @@ map <Leader>rl :call RunLastSpec()<CR>
 map <Leader>ra :call RunAllSpecs()<CR>
 
 function! g:FocusAndDispatchTestLine()
-  execute "Focus test-unit-runner %:" . line(".") . " -p"
+  execute "Focus bundle exec test-unit-runner %:" . line(".") . " -p"
   execute "Dispatch"
 endfunction
 
 function! g:FocusAndDispatchTestFile()
-  execute "Focus test-unit-runner % -p"
+  execute "Focus bundle exec test-unit-runner % -p"
   execute "Dispatch"
 endfunction
 
@@ -249,10 +242,36 @@ map <Leader>uf :call g:FocusAndDispatchTestFile()<CR>
 map <Leader>R :vs<CR><C-W>l:A<CR>
 
 " ===================
-" Goyo / vim-zenroom2
+" Goyo
 " ===================
 
-nnoremap <silent> <leader>z :Goyo 80<cr>
+function! s:goyo_enter()
+  setlocal wrap linebreak nolist
+  set virtualedit=
+  setlocal display+=lastline
+  noremap  <buffer> <silent> k gk
+  noremap  <buffer> <silent> j gj
+  noremap  <buffer> <silent> o go
+  noremap  <buffer> <silent> $ g$
+  if exists('$TMUX')
+    silent !tmux set status off
+  endif
+endfunction
+
+function! s:goyo_leave()
+  setlocal nowrap
+  set virtualedit=all
+  silent! nunmap <buffer> k
+  silent! nunmap <buffer> j
+  silent! nunmap <buffer> o
+  silent! nunmap <buffer> $
+  if exists('$TMUX')
+    silent !tmux set status on
+  endif
+endfunction
+
+autocmd User GoyoEnter nested call <SID>goyo_enter()
+autocmd User GoyoLeave nested call <SID>goyo_leave()
 
 " ======
 " Routes
@@ -278,7 +297,18 @@ map <Leader>tlr :tabnew<cr> :call g:LoadRoutes()<cr>
 " Markdown
 " ======
 
-map <silent> <Leader>md :w !ruby -e 'require "rubygems"; require "kramdown"; print Kramdown::Document.new(STDIN.read.chomp, input: "GFM", hard_wrap: false).to_html' > /tmp/mdresult.html; open /tmp/mdresult.html<CR>
+function! g:RenderMarkdown(template_path)
+  let rubyscript = '
+        \ require "rubygems";
+        \ require "kramdown";
+        \ require "erb";
+        \ body = Kramdown::Document.new(STDIN.read.chomp, input: "GFM", hard_wrap: false).to_html;
+        \ print ERB.new(File.read("' . a:template_path . '/.vim/support/kramdown.html.erb")).result(binding)'
+
+  execute "w !ruby -e '" . rubyscript . "' > /tmp/mdresult.html; open /tmp/mdresult.html"
+endfunction
+
+map <silent> <Leader>md :call g:RenderMarkdown($HOME)<CR>
 
 
 " ======
