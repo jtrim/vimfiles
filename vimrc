@@ -54,6 +54,9 @@ Plugin 'vim-scripts/saturn.vim'
 Plugin 'keith/swift.vim'
 Plugin 'vim-scripts/Align'
 Plugin 'junegunn/goyo.vim'
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-endwise'
+Plugin 'Townk/vim-autoclose'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -271,6 +274,15 @@ endfunction
 
 autocmd User GoyoEnter nested call <SID>goyo_enter()
 autocmd User GoyoLeave nested call <SID>goyo_leave()
+let g:goyo_width=110
+nmap <Leader>z :Goyo<CR>
+
+" =======
+" Airline
+" =======
+
+let g:airline_powerline_fonts = 1
+
 
 " ======
 " Routes
