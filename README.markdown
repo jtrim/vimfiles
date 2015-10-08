@@ -1,3 +1,3 @@
 ## Vimfiles
 
-###### Managed with [Vundle](https://github.com/gmarik/Vundle.vim)
+###### Moved to https://github.com/jtrim/dotfiles
